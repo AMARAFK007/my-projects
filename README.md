@@ -1,3 +1,42 @@
+# MediShield Pharmacy E-commerce Website
+
+A modern e-commerce platform for a pharmacy business with features including:
+
+- Modern UI with responsive design
+- Authentication system
+- Product catalog
+- Order tracking
+- Admin dashboard
+- Contact page with EmailJS integration
+- PWA capabilities
+
+## Technologies Used
+
+- React/TypeScript
+- Next.js
+- Tailwind CSS
+- Shadcn UI
+- Framer Motion
+- EmailJS
+- Netlify for deployment
+
+## Features
+
+- **Modern UI**: Sleek design with animations and responsive layout
+- **Authentication**: Secure login/registration system
+- **Product Management**: Browse and manage pharmacy products
+- **Order Tracking**: Visual timeline for order status
+- **Admin Dashboard**: Sales analytics and product management
+- **Contact Form**: EmailJS integration for customer inquiries
+- **PWA Support**: Offline capabilities and mobile optimization
+
+## Contact
+
+Amarjit Pradhan  
+Angul, India  
+Phone: +918260258997  
+Email: amarjitpradhan007@gmail.com
+
 # MedShop E-Commerce
 
 MedShop is a modern e-commerce platform for healthcare products built with Next.js.
