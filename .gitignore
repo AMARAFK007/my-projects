@@ -1,0 +1,57 @@
+# dependencies
+node_modules/
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+/dist
+
+# misc
+.DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.production
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# editor
+/.idea
+/.vscode
+.cursor
+
+# Netlify
+.netlify
+
+# embedded repos
+/medishield-order-flow
+/medshop-admin
+/bolt.diy
+/kbn-farmhouse-admin
+/kbn-farmhouse-genesis-project
+/medshop-ecommerce
+/nexsora-scribe-flow
+/portfolio-fixed
+
+# next.js
+.next/
+out/
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# temp files
+/temp-work
