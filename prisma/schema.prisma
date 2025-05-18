@@ -1,0 +1,105 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  email          String    @unique
+  password       String
+  role           String    @default("staff") // admin, manager, staff
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}
+
+model Product {
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  name            String
+  description     String
+  price           Float
+  discountedPrice Float?
+  category        String
+  subcategory     String?
+  images          String[]
+  inventory       Int
+  sku             String    @unique
+  manufacturer    String?
+  featured        Boolean   @default(false)
+  isActive        Boolean   @default(true)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  orderItems      OrderItem[]
+}
+
+model Customer {
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  email          String    @unique
+  phone          String?
+  accountStatus  String    @default("active")  // active, inactive, blocked
+  totalSpent     Float     @default(0)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  addresses      Address[]
+  orders         Order[]
+}
+
+model Address {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  fullName    String
+  line1       String
+  line2       String?
+  city        String
+  state       String
+  postalCode  String
+  country     String
+  phone       String
+  customerId  String   @db.ObjectId
+  customer    Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+}
+
+model Order {
+  id              String      @id @default(auto()) @map("_id") @db.ObjectId
+  orderNumber     String      @unique
+  customerId      String      @db.ObjectId
+  customer        Customer    @relation(fields: [customerId], references: [id])
+  status          String      @default("pending") // pending, processing, shipped, delivered, cancelled, refunded
+  totalAmount     Float
+  paymentStatus   String      @default("pending") // pending, paid, failed, refunded
+  paymentMethod   String
+  shippingMethod  String
+  shippingCost    Float
+  tax             Float
+  discount        Float?
+  notes           String?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  items           OrderItem[]
+  shippingAddress Json
+  billingAddress  Json
+}
+
+model OrderItem {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  productId       String   @db.ObjectId
+  product         Product  @relation(fields: [productId], references: [id])
+  orderId         String   @db.ObjectId
+  order           Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productName     String
+  quantity        Int
+  price           Float
+  discountedPrice Float?
+  totalPrice      Float
+}
+
+model Settings {
+  id            String @id @default(auto()) @map("_id") @db.ObjectId
+  key           String @unique
+  value         String
+  description   String?
+} 
